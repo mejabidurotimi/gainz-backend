@@ -25,7 +25,7 @@ mongoose.connect(
 // Middlewares
 app.use(
   cors({
-    origin: "https://gainz-frontend.herokuapp.com/",
+    origin: "https://gainz-frontend.herokuapp.com",
   })
 );
 app.use(morgan("dev"));

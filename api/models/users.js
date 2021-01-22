@@ -13,7 +13,7 @@ usersSchema.methods.generateAuthToken = function () {
       username: this.username,
       _id: this._id,
     },
-    process.env.JWT_KEY,
+    "hellokitty",
     {
       expiresIn: "2h",
     }

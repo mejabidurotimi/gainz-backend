@@ -5,6 +5,9 @@ const usersSchema = mongoose.Schema({
   _id: mongoose.Types.ObjectId,
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  weight: { type: Number, default: 0 },
+  height: { type: Number, default: 0 },
+  bmi: { type: Number, default: 0 },
 });
 
 usersSchema.methods.generateAuthToken = function () {

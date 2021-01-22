@@ -14,7 +14,13 @@ router.post("/", UsersController.createUser);
 // (POST) login user
 router.post("/login", UsersController.loginUser);
 
+// (GET) user details
+router.get("/:userId", checkAuth, UsersController.getProfile);
+
+// (UPDATE) profile
+router.patch("/:userId", checkAuth, UsersController.updateProfile);
+
 // (DELETE) user account
-router.delete("/:userId", checkAuth, UsersController.deleteAccount);
+router.delete("/:userId", checkAuth, UsersController.deleteProfile);
 
 module.exports = router;

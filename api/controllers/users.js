@@ -66,8 +66,42 @@ exports.loginUser = (req, res, next) => {
     .catch((e) => throwError(e));
 };
 
+// (GET) profile details
+exports.getProfile = (req, res, next) => {
+  const userId = req.params.userId;
+  User.findOne({ _id: userId })
+    .exec()
+    .then((doc) => {
+      console.log(doc);
+      res.status(200).json(doc);
+    })
+    .catch((e) => throwError(e));
+};
+
+// (UPDATE) profile
+exports.updateProfile = (req, res, next) => {
+  const id = req.params.userId;
+
+  const updateOps = {};
+  for (const ops of req.body) {
+    updateOps[ops.propName] = ops.value;
+  }
+
+  User.update({ _id: id }, { $set: updateOps })
+    .exec()
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err,
+      });
+    });
+};
+
 // (DELETE) account
-exports.deleteAccount = (req, res, next) => {
+exports.deleteProfile = (req, res, next) => {
   const userId = req.params.userId;
   User.deleteOne({ _id: userId })
     .exec()

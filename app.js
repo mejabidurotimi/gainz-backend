@@ -1,10 +1,11 @@
 // Import dependencies
 const express = require("express");
+const cors = require("cors");
 const app = express();
+app.use(cors());
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const cors = require("cors");
 
 // Import routes
 const usersRoute = require("./api/routes/users");
@@ -23,7 +24,6 @@ mongoose.connect(
 );
 
 // Middlewares
-app.use(cors());
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
